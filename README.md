@@ -47,7 +47,7 @@ I would also like to thank [Adam Kulju](https://github.com/Adam-Kulju), develope
 
 Search:
 - Negamax alpha-beta search (fail-hard)
-  - PV-search (TODO)
+  - Principal variation search
   - Reverse futility pruning (RFP)
   - Null-move pruning (NMP)
   - Futility pruning (extended to depth 3)
