@@ -451,14 +451,16 @@ static inline int negamax_alphabeta(Board* pos, HashTable* table, SearchInfo* in
 		}
 		*/
 
-		score = -negamax_alphabeta(pos, table, info, -beta, -alpha, reduced_depth, candidate_PV, true);
-
-		// Re-search with full depth if it beats alpha (make sure it's not a fluke)
-		/*
-		if (score > alpha) {
-			score = -negamax_alphabeta(pos, table, info, -beta, -alpha, depth - 1, candidate_PV, true);
+		// Principal variation search
+		if (move_num == 0) {
+		        score = -negamax_alphabeta(pos, table, info, -beta, -alpha, reduced_depth, candidate_PV, true);
 		}
-		*/
+		else {
+		        score = -negamax_alphabeta(pos, table, info, -alpha - 1, -alpha, reduced_depth, candidate_PV, true);
+		        if (score > alpha && score < beta) {
+		                score = -negamax_alphabeta(pos, table, info, -beta, -alpha, reduced_depth, candidate_PV, true);
+		        }
+		}
 		
 		take_move(pos);
 
